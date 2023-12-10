@@ -174,6 +174,7 @@ function keyPressed() {
     for (let i = 0; i < 10; i++) {
       let v = new Vehicle(random(10, 20), random(height / 2 - 10, height / 2 + 10), imgVaisseau);
       v.maxSpeed = 5;
+      v.wander()
       v.color = "purple";
       vehicules.push(v);
     }
