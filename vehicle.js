@@ -276,20 +276,16 @@ function findProjection(pos, a, b) {
       stroke(255);
       circle(wanderPoint.x, wanderPoint.y, this.wanderRadius * 2);
 
-      // on dessine une lige qui relie le vaisseau à ce point
-      // c'est la ligne blanche en face du vaisseau
+    
       line(this.pos.x, this.pos.y, wanderPoint.x, wanderPoint.y);
     }
-    // On va s'occuper de calculer le point vert SUR LE CERCLE
-    // il fait un angle wanderTheta avec le centre du cercle
-    // l'angle final par rapport à l'axe des X c'est l'angle du vaisseau
-    // + cet angle
+    
     let theta = this.wanderTheta + this.vel.heading();
 
     let x = this.wanderRadius * cos(theta);
     let y = this.wanderRadius * sin(theta);
 
-    // maintenant wanderPoint c'est un point sur le cercle
+    
     wanderPoint.add(x, y);
 
     if (Vehicle.debug) {
@@ -302,14 +298,10 @@ function findProjection(pos, a, b) {
       stroke("yellow");
       line(this.pos.x, this.pos.y, wanderPoint.x, wanderPoint.y);
     }
-    // On a donc la vitesse désirée que l'on cherche qui est le vecteur
-    // allant du vaisseau au cercle vert. On le calcule :
-    // ci-dessous, steer c'est la desiredSpeed directement !
+  
     let desiredSpeed = wanderPoint.sub(this.pos);
 
-    // Ce que dit Craig Reynolds, c'est que uniquement pour ce
-    // comportement, la force à appliquer au véhicule est
-    // desiredSpeed et pas desiredSpeed - vitesse actuelle !
+   
     let force = desiredSpeed;
 
     force.setMag(this.maxForce);
