@@ -169,7 +169,7 @@ Le comportement des suiveurs peut être modifié dynamiquement en appuyant sur "
 Utilisation de la fonction keyPressed() pour détecter les frappes de touches.
 Changement du mode de suivi en modifiant la variable demo.
 ### 5. Véhicules avec Comportements Wander
-Des véhicules supplémentaires, ayant des comportements wander, évitant les obstacles et étant repoussés par les bords de l'écran, peuvent être ajoutés en appuyant sur la touche "f".
+Des véhicules supplémentaires, ayant des comportements wander, évitant les obstacles, peuvent être ajoutés en appuyant sur la touche "f" et étant repoussés par les bords de l'écran.
 
 `  
 
