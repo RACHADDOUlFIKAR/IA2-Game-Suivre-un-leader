@@ -1,4 +1,6 @@
 # Compte Rendu du Projet - Suivre un  Leader
+## Réalisé par : RACHAD DOUlFIKAR
+## Site: EMSI Casablanca
 
 
 
@@ -36,29 +38,100 @@ Le comportement de suivi de leader a été implémenté, avec une variation tran
 #### Détails d'Implémentation :
 
 Utilisation de la classe Vehicle pour représenter chaque véhicule.
-Intégration du suivi de leader avec la fonction arrive() pour suivre le leader.
+Intégration du suivi de leader avec la fonction arrive() et applyBehaviors() pour suivre le leader.
+
+```javascript
+applyBehaviors(target, obstacles, vehicules) {
+
+  this.avoidEdges();
+  
+  // la logique pour éviter les obstacles
+  let avoidForceObstacles = this.avoid(obstacles);
+  
+  avoidForceObstacles.mult(0.9);
+  this.applyForce(avoidForceObstacles);
+  
+  // la logique pour suivre la cible
+  
+  let seekForce = this.arrive(target);
+  seekForce.mult(0.2);
+  this.applyForce(seekForce);
+  
+  // Ajoutez pour la séparation des véhicules
+  let separationForce = this.separate(vehicules);
+  separationForce.mult(0.9);
+  this.applyForce(separationForce);
+  
+}
+arrive(target) {
+  return this.seek(target, true);
+  }
+``` 
+
 Mise en œuvre de la séparation pour éviter les collisions avec les autres véhicules.
 Ajout d'une zone d'évasion en utilisant un cercle devant le leader.
-### 2. Curseurs pour Ajuster les Paramètres
+### 2. Évitement d'Obstacles
+Tous les véhicules ont la capacité d'éviter les obstacles sur leur trajectoire. Lorsqu'un obstacle est détecté, les véhicules ajustent leur trajectoire pour éviter une collision.
+
+Détails d'Implémentation :
+
+- Utilisation de la fonction `avoid()` dans la classe `Vehicle` pour détecter et éviter les obstacles.
+  
+  ```
+    avoid(obstacles) {
+  
+      let ahead = this.vel.copy();
+      ahead.normalize();
+      ahead.mult(this.distanceAhead);
+      let pointAuBoutDeAhead = p5.Vector.add(this.pos, ahead);
+      
+      if (Vehicle.debug) {
+      this.drawVector(this.pos, ahead, color(255, 0, 0));
+      fill("lightgreen");
+      noStroke();
+      circle(pointAuBoutDeAhead.x, pointAuBoutDeAhead.y, 10);
+      }
+      
+      let obstacleLePlusProche = this.getObstacleLePlusProche(obstacles);
+      
+      if (obstacleLePlusProche == undefined) {
+      return createVector(0, 0);
+      }
+      
+      let distance = obstacleLePlusProche.pos.dist(pointAuBoutDeAhead);
+      
+      if (distance < obstacleLePlusProche.r + this.largeurZoneEvitementDevantVaisseau) {
+      let force = p5.Vector.sub(pointAuBoutDeAhead, obstacleLePlusProche.pos);
+      force.setMag(this.maxSpeed);
+      force.sub(this.vel);
+      force.limit(this.maxForce);
+      return force;
+      } else {
+      return createVector(0, 0);
+      }
+      }
+  
+  ```
+
+- Vérification de la collision avec chaque obstacle et ajustement de la position pour éviter la collision.
+
+### 3. Curseurs pour Ajuster les Paramètres
 L'introduction de curseurs offre une approche interactive pour ajuster les paramètres de simulation. Deux curseurs sont inclus : un pour régler la force des comportements et l'autre pour ajuster la vitesse des véhicules.
-
-
-
-  ##### forceSlider = createSlider(0, 2, 1, 0.1);</br>
-  ##### forceSlider.position(canvasWidth + 10, 30);</br>
-  ##### createDiv('Force').position(width + forceSlider.width + 30, 32);</br>
-  ##### vitesseSlider = createSlider(0, 10, 4, 0.1);</br>
-  ##### vitesseSlider.position(canvasWidth + 10, 70);</br>
-  ##### createDiv('Vitesse').position(width + vitesseSlider.width + 30, 72);</br>
-  
-  
-
 
 #### Détails d'Implémentation :
 
+```
+forceSlider = createSlider(0, 2, 1, 0.1);</br>
+forceSlider.position(canvasWidth + 10, 30);</br>
+createDiv('Force').position(width + forceSlider.width + 30, 32);</br>
+vitesseSlider = createSlider(0, 10, 4, 0.1);</br>
+vitesseSlider.position(canvasWidth + 10, 70);</br>
+createDiv('Vitesse').position(width + vitesseSlider.width + 30, 72);</br>
+  ```
+
 Utilisation de la fonction createSlider() pour créer des curseurs interactifs.
 Les curseurs sont positionnés du côté droit de l'écran pour une manipulation facile.
-### 3. Changement Dynamique de Comportements vers "Serpent"
+### 4. Changement Dynamique de Comportements vers "Serpent"
 Le comportement des suiveurs peut être modifié dynamiquement en appuyant sur "s" . Deux modes sont inclus : suivi transparent du leader et suivi à la queue du leader pour prendre une forme de serpent
 `case "snake":
       vehicules.forEach((vehicle, index) => {
@@ -97,12 +170,10 @@ Le comportement des suiveurs peut être modifié dynamiquement en appuyant sur "
 
 Utilisation de la fonction keyPressed() pour détecter les frappes de touches.
 Changement du mode de suivi en modifiant la variable demo.
-### 4. Véhicules avec Comportements Wander
+### 5. Véhicules avec Comportements Wander
 Des véhicules supplémentaires, ayant des comportements wander, évitant les obstacles et étant repoussés par les bords de l'écran, peuvent être ajoutés en appuyant sur la touche "f".
 
 `  
-
-
 
     for (let i = 0; i < 10; i++) {
     
@@ -113,7 +184,6 @@ Des véhicules supplémentaires, ayant des comportements wander, évitant les ob
       vehicules.push(v);
       
     }
-  
     `
 
 #### Détails d'Implémentation :
@@ -135,7 +205,7 @@ Le projet a été optimisé pour s'adapter dynamiquement à la taille de la fen�
 #### Détails d'Implémentation :
 
 Ajustement dynamique de la largeur du canvas en fonction de la fenêtre.
-### 4. Mode de Débogage
+### 3. Mode de Débogage
 Il est possible d'activer le mode de débogage en appuyant sur la touche "d". Cela active le mode de débogage pour les véhicules et les obstacles.
 
 Détails d'Implémentation :
