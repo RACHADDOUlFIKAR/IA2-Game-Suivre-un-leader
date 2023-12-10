@@ -131,7 +131,9 @@ Utilisation de la fonction createSlider() pour créer des curseurs interactifs.
 Les curseurs sont positionnés du côté droit de l'écran pour une manipulation facile.
 ### 4. Changement Dynamique de Comportements vers "Serpent"
 Le comportement des suiveurs peut être modifié dynamiquement en appuyant sur "s" . Deux modes sont inclus : suivi transparent du leader et suivi à la queue du leader pour prendre une forme de serpent
+
 `case "snake":
+
       vehicules.forEach((vehicle, index) => {
         let forceArrive;
 
