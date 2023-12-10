@@ -50,6 +50,7 @@ Une fonctionnalité de musique de fond a été ajoutée pour améliorer l'expér
 
 Utilisation de la fonction loadSound() pour charger la musique.
 Intégration d'un bouton pour arrêter la musique.
+
 ### 2. Ajustement Dynamique de la Taille du Canvas
 Le projet a été optimisé pour s'adapter dynamiquement à la taille de la fenêtre du navigateur, assurant une expérience utilisateur fluide sur différents appareils.
 
