@@ -1,6 +1,14 @@
 # Compte Rendu du Projet - Suivre un  Leader
 
-https://github.com/RACHADDOUlFIKAR/IA2-Game-Suivre-un-leader/assets/97551741/376f01a4-8a36-4f64-b71a-d60bdaa956f1
+
+
+https://github.com/RACHADDOUlFIKAR/IA2-Game-Suivre-un-leader/assets/97551741/ce370105-83d1-4b94-9738-4fb7d92c8ce7
+
+
+
+
+
+
 ## Introduction
 Le projet consiste en la création d'un système de simulation de comportements véhiculaires utilisant la bibliothèque p5.js. L'objectif principal est d'implémenter plusieurs comportements, tels que le suivi de leader, l'évitement d'obstacles et le comportement wander, tout en offrant la possibilité d'ajuster les paramètres de simulation à l'aide de curseurs.
 
