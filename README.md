@@ -4,9 +4,7 @@
 
 
 
-https://github.com/RACHADDOUlFIKAR/IA2-Game-Suivre-un-leader/assets/97551741/ce370105-83d1-4b94-9738-4fb7d92c8ce7
-
-
+https://github.com/RACHADDOUlFIKAR/IA2-Game-Suivre-un-leader/assets/97551741/a1cdfab7-528b-4f9d-a8a4-25187db4449b
 
 
 
