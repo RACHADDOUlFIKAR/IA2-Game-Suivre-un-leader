@@ -121,12 +121,12 @@ L'introduction de curseurs offre une approche interactive pour ajuster les param
 #### Détails d'Implémentation :
 
 ```
-forceSlider = createSlider(0, 2, 1, 0.1);</br>
-forceSlider.position(canvasWidth + 10, 30);</br>
-createDiv('Force').position(width + forceSlider.width + 30, 32);</br>
-vitesseSlider = createSlider(0, 10, 4, 0.1);</br>
-vitesseSlider.position(canvasWidth + 10, 70);</br>
-createDiv('Vitesse').position(width + vitesseSlider.width + 30, 72);</br>
+forceSlider = createSlider(0, 2, 1, 0.1);
+forceSlider.position(canvasWidth + 10, 30);
+createDiv('Force').position(width + forceSlider.width + 30, 32);
+vitesseSlider = createSlider(0, 10, 4, 0.1);
+vitesseSlider.position(canvasWidth + 10, 70);
+createDiv('Vitesse').position(width + vitesseSlider.width + 30, 72);
   ```
 
 Utilisation de la fonction createSlider() pour créer des curseurs interactifs.
